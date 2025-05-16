@@ -5,11 +5,11 @@ using System;
 
 public class PlayerCondition : MonoBehaviour
 {
-    public UICondition UICondition;
+    public UICondition uiCondition;
     
-    Condition health{get {return UICondition.health;}}
-    Condition hunger{get {return UICondition.hunger;}}
-    Condition stamina{get {return UICondition.stamina;}}
+    Condition health{get {return uiCondition.health;}}
+    Condition hunger{get {return uiCondition.hunger;}}
+    Condition stamina{get {return uiCondition.stamina;}}
 
     public float noHungerHealthDecay;   
     public event Action onTakeDamage;  
@@ -18,12 +18,12 @@ public class PlayerCondition : MonoBehaviour
         hunger.Subtract(hunger.passiveValue * Time.deltaTime);
         stamina.Add(stamina.passiveValue * Time.deltaTime);
 
-        if (hunger.curValue < 0f)
+        if (hunger.curValue <= 0f)
         {
             health.Subtract(noHungerHealthDecay *  Time.deltaTime);
         }
 
-        if (health.curValue < 0f)
+        if (health.curValue <= 0f)
         {
             Die();
         }
