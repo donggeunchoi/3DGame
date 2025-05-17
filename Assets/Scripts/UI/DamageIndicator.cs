@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class DamageIndicator : MonoBehaviour
 {
     public Image image;
-
     public float flashSpeed;
     private Coroutine coroutine;
     
@@ -18,6 +17,7 @@ public class DamageIndicator : MonoBehaviour
 
     public void Flash()
     {
+        //기존에 코르틴이 있다면 꺼줘야 하기 때문에.
         if (coroutine != null)
         {
             StopCoroutine(coroutine);
