@@ -53,8 +53,12 @@ public class DayNightCycle : MonoBehaviour
 
         GameObject go = lightSource.gameObject;
         if (lightSource.intensity == 0 && go.activeInHierarchy)
+        {
             go.SetActive(false);
+        }
         else if (lightSource.intensity > 0 && !go.activeInHierarchy)
+        {
             go.SetActive(true);
+        }
     }
 }
