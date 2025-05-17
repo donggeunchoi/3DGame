@@ -8,7 +8,7 @@ public interface IDamagable
     void TakePhysicalDamage(int daamgeAmount);
 }
 
-public class PlayerCondition : MonoBehaviour
+public class PlayerCondition : MonoBehaviour, IDamagable
 {
     public UICondition uiCondition;
     
