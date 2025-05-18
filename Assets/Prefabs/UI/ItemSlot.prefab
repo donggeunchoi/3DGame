@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 402352597374573920}
   - component: {fileID: 2563275921073584111}
   - component: {fileID: 4490156434407340875}
+  - component: {fileID: 1749347237819255291}
   - component: {fileID: 991906449757238193}
   - component: {fileID: 1960914762889655128}
-  - component: {fileID: 8513963661146679001}
   m_Layer: 5
   m_Name: ItemSlot
   m_TagString: Untagged
@@ -80,6 +80,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1749347237819255291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4049995354383542451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 480f70f8b16d34fe38b8c724b187df1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  inventory: {fileID: 0}
+  button: {fileID: 0}
+  icon: {fileID: 305316837507704139}
+  quatityText: {fileID: 1599726939703114679}
+  index: 0
+  equipped: 0
+  quantity: 0
 --- !u!114 &991906449757238193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,23 +143,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4490156434407340875}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1749347237819255291}
+        m_TargetAssemblyTypeName: ItemSlot, Assembly-CSharp
+        m_MethodName: OnClickButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1960914762889655128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4049995354383542451}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
-  m_EffectDistance: {x: 2, y: -2}
-  m_UseGraphicAlpha: 1
---- !u!114 &8513963661146679001
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,9 +165,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4049995354383542451}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6584dbd5e77a4dc69c38185dec9f3be, type: 3}
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &7687351861184039543
 GameObject:
   m_ObjectHideFlags: 0
