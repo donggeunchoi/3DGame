@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2544356781049388747}
   - component: {fileID: 894203753325632545}
   - component: {fileID: 2892826484490738133}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Log
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3559859351496405669}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.91, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6264609964173509952}
   - component: {fileID: 1093042247261038609}
   - component: {fileID: 3185705482119050178}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ItemWood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
