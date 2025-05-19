@@ -64,7 +64,13 @@ public class NPCcontroller : MonoBehaviour, IDamagable
     // Update is called once per frame
     void Update()
     {
-        playerDistance = Vector3.Distance(transform.position, CharacterManager.Instance.transform.position);
+        Vector3 npcPos = transform.position;
+        npcPos.y = 0;
+        
+        Vector3 playerPos = CharacterManager.Instance.Player.transform.position;
+        playerPos.y = 0;
+        
+        playerDistance = Vector3.Distance(npcPos, playerPos);
     
         animator.SetBool("Moving", aiState != AIState.Idle);
 
@@ -87,6 +93,7 @@ public class NPCcontroller : MonoBehaviour, IDamagable
 
     private void SetState(AIState state)
     {
+        Debug.Log($"npc 상태 전이 {aiState} -> {state}");
         aiState = state;
 
         switch (aiState)
@@ -113,6 +120,7 @@ public class NPCcontroller : MonoBehaviour, IDamagable
 
     void PassiveUpdate()
     {
+        Debug.Log($"passiveupdate실행거리 {playerDistance}/ 감지범위 {detectDistance}");
         if (aiState == AIState.Wandering && agent.remainingDistance < 0.1f)
         {
             SetState(AIState.Idle);
@@ -121,6 +129,7 @@ public class NPCcontroller : MonoBehaviour, IDamagable
 
         if (playerDistance < detectDistance)
         {
+            Debug.Log("플레이어 감지요, 공격상태 전환함~");
             SetState(AIState.Attacking);
         }
     }
@@ -192,6 +201,7 @@ public class NPCcontroller : MonoBehaviour, IDamagable
             if (Time.time - lastAttackTime > attackRate)
             {
                 lastAttackTime = Time.time;
+                
                 CharacterManager.Instance.Player.controller.GetComponent<IDamagable>().TakePhysicalDamage(damage);
                 animator.speed = 1;
                 animator.SetTrigger("Attack");
