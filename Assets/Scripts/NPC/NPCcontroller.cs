@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,9 +11,10 @@ public enum AIState
 {
     Idle,
     Wandering,
-    Attacking
+    Attacking,
+    Fleeing
 }
-public class NPCcontroller : MonoBehaviour
+public class NPCcontroller : MonoBehaviour, IDamagable
 {
     [Header("Stats")] 
     public int health;
@@ -36,6 +38,7 @@ public class NPCcontroller : MonoBehaviour
     public float attackRate;
     private float lastAttackTime;
     public float attackDistance;
+    public float safeDistance;
 
     private float playerDistance;
 
@@ -74,7 +77,10 @@ public class NPCcontroller : MonoBehaviour
                 PassiveUpdate();
                 break;
             case AIState.Attacking:
-                AttackingUpDate();
+                AttackingUpdate();
+                break;
+            case AIState.Fleeing:
+                FleeingUpdate();
                 break;
         }
     }
@@ -97,6 +103,10 @@ public class NPCcontroller : MonoBehaviour
                 agent.speed = runSpeed;
                 agent.isStopped = false;
                 break;
+            case AIState.Fleeing:
+                agent.speed = runSpeed;
+                agent.isStopped = false;
+                break;
         }
         animator.speed = agent.speed/walkSpeed;
     }
@@ -113,6 +123,40 @@ public class NPCcontroller : MonoBehaviour
         {
             SetState(AIState.Attacking);
         }
+    }
+
+    void FleeingUpdate()
+    {
+        if (agent.remainingDistance < 0.1f)
+        {
+            agent.SetDestination(GetFleeLocation());
+        }
+        else
+        {
+            SetState(AIState.Wandering);
+        }
+    }
+
+    Vector3 GetFleeLocation()
+    {
+        NavMeshHit hit;
+        
+        NavMesh.SamplePosition(transform.position + (Random.onUnitSphere * safeDistance), out hit, maxWanderDistance, NavMesh.AllAreas);
+        int i = 0;
+        while (GetDestinationAngle(hit.position) > 90 || playerDistance < safeDistance)
+        {
+
+            NavMesh.SamplePosition(transform.position + (Random.onUnitSphere * safeDistance), out hit, maxWanderDistance, NavMesh.AllAreas);
+            i++;
+            if (i == 30)
+                break;
+        }
+
+        return hit.position;
+    }
+    float GetDestinationAngle(Vector3 targetPos)
+    {
+        return Vector3.Angle(transform.position - CharacterManager.Instance.Player.transform.position, transform.position + targetPos);
     }
 
     void WanderToNewLocation()
@@ -140,9 +184,81 @@ public class NPCcontroller : MonoBehaviour
         return hit.position;
     }
 
-    void AttackingUpDate()
+    void AttackingUpdate()
     {
-        
+        if (playerDistance < attackDistance && IsPlayerInFieldOfView())
+        {
+            agent.isStopped = true;
+            if (Time.time - lastAttackTime > attackRate)
+            {
+                lastAttackTime = Time.time;
+                CharacterManager.Instance.Player.controller.GetComponent<IDamagable>().TakePhysicalDamage(damage);
+                animator.speed = 1;
+                animator.SetTrigger("Attack");
+            }
+        }
+        else
+        {
+            if (playerDistance < detectDistance)
+            {
+                agent.isStopped = false;
+                NavMeshPath path = new NavMeshPath();
+                if (agent.CalculatePath(CharacterManager.Instance.Player.transform.position, path))
+                {
+                    agent.SetDestination(CharacterManager.Instance.Player.transform.position);
+                }
+                else
+                {
+                    agent.SetDestination(transform.position);
+                    agent.isStopped = true;
+                    SetState(AIState.Wandering);
+                }
+            }
+            else
+            {
+                agent.SetDestination(transform.position);
+                agent.isStopped = true;
+                SetState(AIState.Wandering);
+            }
+        }
+    }
+
+    bool IsPlayerInFieldOfView()
+    {
+        Vector3 directionToPlayer = CharacterManager.Instance.Player.transform.position - transform.position;
+        float angle = Vector3.Angle(transform.forward, directionToPlayer);
+        return angle < fieldOfView * 0.5f;
+    }
+
+    public void TakePhysicalDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+
+        StartCoroutine(DamageFlash());
+    }
+
+    void Die()
+    {
+        for (int i = 0; i < dropOnDeath.Length; i++)
+        {
+            Instantiate(dropOnDeath[i].dropPrefab, transform.position + Vector3.up * 2, Quaternion.identity);
+        }
+        Destroy(gameObject);
+    }
+
+    IEnumerator DamageFlash()
+    {
+        for (int x = 0; x < meshRenderers.Length; x++)
+        {
+            meshRenderers[x].material.color = new Color(1.0f, 0.6f, 0.6f);
+        } 
+        yield return new WaitForSeconds(0.1f);
+        for (int x = 0; x < meshRenderers.Length; x++)
+            meshRenderers[x].material.color = Color.white;
     }
 }
 
