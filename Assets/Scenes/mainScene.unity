@@ -859,6 +859,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 483129266}
   condition: {fileID: 483129272}
+  equip: {fileID: 0}
   itemData: {fileID: 0}
   dropPosition: {fileID: 1369542559}
 --- !u!54 &483129268
@@ -2181,7 +2182,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 886433323}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2036990262}
+        m_TargetAssemblyTypeName: UIInventory, Assembly-CSharp
+        m_MethodName: OnUpEquipButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &886433323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2901,7 +2914,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 256
@@ -4110,7 +4123,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1426873033}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2036990262}
+        m_TargetAssemblyTypeName: UIInventory, Assembly-CSharp
+        m_MethodName: OnEquipButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1426873033
 MonoBehaviour:
   m_ObjectHideFlags: 0
