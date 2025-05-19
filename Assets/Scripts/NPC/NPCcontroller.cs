@@ -93,7 +93,6 @@ public class NPCcontroller : MonoBehaviour, IDamagable
 
     private void SetState(AIState state)
     {
-        Debug.Log($"npc 상태 전이 {aiState} -> {state}");
         aiState = state;
 
         switch (aiState)
@@ -120,7 +119,6 @@ public class NPCcontroller : MonoBehaviour, IDamagable
 
     void PassiveUpdate()
     {
-        Debug.Log($"passiveupdate실행거리 {playerDistance}/ 감지범위 {detectDistance}");
         if (aiState == AIState.Wandering && agent.remainingDistance < 0.1f)
         {
             SetState(AIState.Idle);
