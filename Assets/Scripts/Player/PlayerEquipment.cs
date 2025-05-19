@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerEquipment : MonoBehaviour
 {
@@ -29,6 +31,14 @@ public class PlayerEquipment : MonoBehaviour
         {
             Destroy(curEquip.gameObject);
             curEquip = null;
+        }
+    }
+
+    public void OnAttackInput(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed && curEquip != null && controller.canLook)
+        {
+            curEquip.OnAttackInput();
         }
     }
 }
