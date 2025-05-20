@@ -127,7 +127,6 @@ public class NPCcontroller : MonoBehaviour, IDamagable
 
         if (playerDistance < detectDistance)
         {
-            Debug.Log("플레이어 감지요, 공격상태 전환함~");
             SetState(AIState.Attacking);
         }
     }

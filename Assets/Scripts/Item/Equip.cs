@@ -6,6 +6,8 @@ public class Equip : MonoBehaviour
 {
     public virtual void OnAttackInput()
     {
+        Debug.Log("공격 시도");
+        // Ray ray = new Ray(Camera.main.transform.position, )
         
     }
     
