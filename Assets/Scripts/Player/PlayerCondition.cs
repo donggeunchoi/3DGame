@@ -17,7 +17,8 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     Condition stamina{get {return uiCondition.stamina;}}
 
     public float noHungerHealthDecay;   
-    public event Action onTakeDamage;  
+    public event Action onTakeDamage;
+    
     void Update()
     {
         hunger.Subtract(hunger.passiveValue * Time.deltaTime);
@@ -64,4 +65,5 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         stamina.Subtract(amount);
         return true;
     }
+    
 }

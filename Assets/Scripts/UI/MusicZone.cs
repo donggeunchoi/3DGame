@@ -23,7 +23,6 @@ public class MusicZone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log($"[MUSIC] 현재 볼륨: {audioSource.volume} / 목표 볼륨: {targetVolume} / 재생 중인가? {audioSource.isPlaying}");
         if (!Mathf.Approximately(audioSource.volume, targetVolume))
         {
             audioSource.volume = Mathf.MoveTowards(audioSource.volume, targetVolume, (maxVolume / fadeTime) * Time.deltaTime);
@@ -32,7 +31,6 @@ public class MusicZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"[MUSIC] 트리거 충돌 감지: {other.name}, 태그: {other.tag}");
         if (other.CompareTag("Player"))
         {
             targetVolume = maxVolume;

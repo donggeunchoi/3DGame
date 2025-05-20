@@ -26,6 +26,9 @@ public class PlayerController : MonoBehaviour
     public bool canLook = true;
     private Rigidbody rigidbody;
     public Action inventory;
+
+    [Header("JumpUp")] 
+    public float jumpForce;
     
     private void Awake()
     {
@@ -127,6 +130,9 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
         canLook = !toggle;
     }
-    
-    
+
+    public void AddForce()
+    {
+        rigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
 }
