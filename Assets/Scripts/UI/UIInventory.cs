@@ -204,7 +204,7 @@ public class UIInventory : MonoBehaviour
                     case ConsumableType.PlayerSpeed:
                         Debug.Log("플레이어 스피드 접근했는디");
                         condition.Speed(selectedItem.item.consumables[i].value);break;
-                        // CharacterManager.Instance.Player.controller.moveSpeed += 10f; 
+                       
                         
                 }
             }

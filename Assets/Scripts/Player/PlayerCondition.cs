@@ -54,7 +54,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public void Speed(float amount)
     {
-        addSpeed.Add(amount);
+        CharacterManager.Instance.Player.controller.moveSpeed += amount; 
     }
 
     public void TakePhysicalDamage(int damageAmount)
