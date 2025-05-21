@@ -51,5 +51,22 @@ public class MoveCube : MonoBehaviour
         isMoving = false;
     }
 
+    //만약 플레이어가 블럭에 닿으면 같이 움직이게 하는 메서드
+    //닿여져있을 동안에는 플레이어가 자식으로 들어가서 움직이는 블록이랑 같이 움직이에 하는방법.
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.transform.SetParent(transform);
+        }
+    }
     
+    //반대로.
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.transform.SetParent(null);
+        }
+    }
 }
