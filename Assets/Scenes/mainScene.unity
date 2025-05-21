@@ -2550,8 +2550,9 @@ GameObject:
   - component: {fileID: 732584805}
   - component: {fileID: 732584804}
   - component: {fileID: 732584803}
+  - component: {fileID: 732584806}
   m_Layer: 0
-  m_Name: Cube (4)
+  m_Name: Ladder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2566,8 +2567,8 @@ Transform:
   m_GameObject: {fileID: 732584801}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.0674, y: 4.4974, z: -4.6237}
-  m_LocalScale: {x: 0.1052, y: 5.364111, z: 0.53436655}
+  m_LocalPosition: {x: -4.0674, y: 4.3373, z: -4.6237}
+  m_LocalScale: {x: 0.1052, y: 5.0438733, z: 0.53436655}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1611178328}
@@ -2643,6 +2644,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 732584801}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &732584806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732584801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b506282ea48f47be9e7b8347d947579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  liftHeight: 6
+  liftDuration: 2
 --- !u!1 &798846955
 GameObject:
   m_ObjectHideFlags: 0
