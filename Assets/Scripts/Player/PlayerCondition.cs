@@ -15,6 +15,8 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     Condition health{get {return uiCondition.health;}}
     Condition hunger{get {return uiCondition.hunger;}}
     Condition stamina{get {return uiCondition.stamina;}}
+    Condition addSpeed {get {return uiCondition.speed;}}
+    
 
     public float noHungerHealthDecay;   
     public event Action onTakeDamage;
@@ -48,6 +50,11 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     public void Die()
     {
         Debug.Log("플레이어가 죽었다.");
+    }
+
+    public void Speed(float amount)
+    {
+        addSpeed.Add(amount);
     }
 
     public void TakePhysicalDamage(int damageAmount)

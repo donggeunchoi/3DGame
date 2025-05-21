@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("JumpUp")] 
     public float jumpForce;
+
+    [Header("Attack")]
+    public int AttackPower;
     
     private void Awake()
     {
