@@ -80,9 +80,7 @@ public class PlayerController : MonoBehaviour
             CharacterManager.Instance.Player.condition.UseStamina(20f);
             rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
         }
-
-        // PlayerCondition.UseStamina(int amount);
-        //여기에 점프를 사용하면, 스테미나가 줄어드는 방식으로, 작성해야할듯 하요
+        
     }
 
     private void Move()
